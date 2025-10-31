@@ -66,7 +66,7 @@ Aplikacja jest gotowa do wdrożenia na Vercel:
 3. Ustaw polecenie build: `npm run build`
 4. Wdróż!
 
-Aplikacja jest już wdrożona i dostępna na: https://app-h9orgq4m4-rmanellos-projects.vercel.app
+Aplikacja jest już wdrożona i dostępna na: https://polybet-by-winorlos9idk.vercel.app/
 
 ## 📄 Licencja
 
@@ -146,7 +146,7 @@ The application is ready for deployment on Vercel:
 3. Set build command: `npm run build`
 4. Deploy!
 
-The application is already deployed and available at: https://app-h9orgq4m4-rmanellos-projects.vercel.app
+The application is already deployed and available at: https://polybet-by-winorlos9idk.vercel.app
 
 ## 📄 License
 
