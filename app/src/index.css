@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Uncial+Antiqua&family=Rye&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Cinzel', serif;
+  }
+  
+  body {
+    background: linear-gradient(135deg, #1a0d2e 0%, #2d1b3d 25%, #4a1b5c 50%, #6b2d8f 75%, #8e3dae 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+  
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.8), transparent),
+      radial-gradient(2px 2px at 60% 70%, rgba(255,215,0,0.6), transparent),
+      radial-gradient(1px 1px at 50% 50%, rgba(255,255,255,0.9), transparent),
+      radial-gradient(1px 1px at 80% 10%, rgba(255,192,203,0.7), transparent),
+      radial-gradient(2px 2px at 90% 40%, rgba(138,43,226,0.8), transparent);
+    background-size: 200% 200%;
+    animation: sparkle 20s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes sparkle {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+  50% { transform: translateY(-100px) rotate(180deg); opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(255,215,0,0.5), 0 0 40px rgba(138,43,226,0.3); }
+  50% { box-shadow: 0 0 30px rgba(255,215,0,0.8), 0 0 60px rgba(138,43,226,0.5); }
+}
+
+@layer components {
+  .card {
+    @apply bg-gradient-to-br from-purple-900/30 via-pink-900/20 to-indigo-900/30 backdrop-blur-lg border-2 border-yellow-400/30 rounded-3xl p-6 shadow-2xl;
+    @apply relative overflow-hidden;
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,215,0,0.1), transparent);
+    animation: shimmer 3s infinite;
+    pointer-events: none;
+  }
+  
+  .btn {
+    @apply px-6 py-3 rounded-2xl font-bold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply transform hover:scale-105 active:scale-95;
+    @apply relative overflow-hidden;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    animation: glow 2s ease-in-out infinite;
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-to-r from-yellow-500 via-amber-400 to-yellow-500 text-purple-900 focus:ring-yellow-500;
+    @apply shadow-lg shadow-yellow-500/50;
+    background-size: 200% 100%;
+    animation: glow 2s ease-in-out infinite, shimmer 3s infinite;
+  }
+  
+  .btn-primary:hover {
+    @apply from-yellow-400 via-amber-300 to-yellow-400;
+    animation: shimmer 1s infinite;
+  }
+  
+  .btn-success {
+    @apply bg-gradient-to-r from-emerald-500 to-teal-500 text-white focus:ring-emerald-500;
+    @apply shadow-lg shadow-emerald-500/50;
+  }
+  
+  .btn-danger {
+    @apply bg-gradient-to-r from-red-500 to-rose-600 text-white focus:ring-red-500;
+    @apply shadow-lg shadow-red-500/50;
+  }
+  
+  .btn-secondary {
+    @apply bg-gradient-to-r from-purple-700/50 to-pink-700/50 hover:from-purple-600/70 hover:to-pink-600/70 text-yellow-200 focus:ring-purple-500;
+    @apply border-2 border-yellow-400/30;
+    @apply shadow-lg shadow-purple-500/30;
+  }
+  
+  .input {
+    @apply w-full px-4 py-3 border-2 border-yellow-400/30 rounded-2xl focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400;
+    @apply bg-purple-900/40 backdrop-blur-sm text-yellow-100 placeholder-yellow-300/50;
+    @apply font-semibold;
+    font-family: 'Cinzel', serif;
+  }
+  
+  /* Force English for datetime-local inputs */
+  input[type="datetime-local"] {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  
+  input[type="datetime-local"]::-webkit-datetime-edit-text,
+  input[type="datetime-local"]::-webkit-datetime-edit-month-field,
+  input[type="datetime-local"]::-webkit-datetime-edit-day-field,
+  input[type="datetime-local"]::-webkit-datetime-edit-year-field,
+  input[type="datetime-local"]::-webkit-datetime-edit-hour-field,
+  input[type="datetime-local"]::-webkit-datetime-edit-minute-field {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  
+  .label {
+    @apply block text-sm font-bold text-yellow-200 mb-2;
+    @apply uppercase tracking-wider;
+    font-family: 'Cinzel', serif;
+    text-shadow: 0 0 10px rgba(255,215,0,0.5);
+  }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+/* Loading animations */
+.loading-spinner {
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #3498db;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Animations */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(20px) scale(0.9); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.magic-text {
+  background: linear-gradient(45deg, #ffd700, #ff8c00, #ff69b4, #9370db, #ffd700);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientText 5s ease infinite;
+  text-shadow: 0 0 30px rgba(255,215,0,0.5);
+}
+
+@keyframes gradientText {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Glassmorphism effects */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Utility classes */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
